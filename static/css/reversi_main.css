@@ -1,0 +1,118 @@
+/* overall setting */
+body {
+    background-color: #2d2d2d;
+    color: white;
+    font-size: 20px;
+}
+
+h1 { /*BIG title (e.g., "Mancala", "Reversi")*/
+    font-size: 50px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    font-size: 30px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#top {
+    margin-top: 5%;
+    height: 15%;
+}
+
+#stage {
+    height: 50%;
+}
+
+#bottom {
+    height: 15%;
+}
+
+/* welcome page */
+#welcome_buttons {
+    margin-top: 10%;
+}
+
+/* game page */
+#game_ground {
+    height: 480px;
+}
+#game_ground .column {
+    width: 60px;
+    margin: 0px;
+}
+
+/* background cells */
+.ele {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: solid 2px #ffffff;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    vertical-align: middle;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+}
+
+.ele:hover {
+    border: solid 2px #000000; 
+}
+
+.ele:focus {
+    outline: none;
+}
+
+.ele:disabled {
+    border: solid 2px #ffffff;
+    cursor: default;
+}
+
+#ele_button12 {
+    border-top-left-radius: 8px;
+}
+
+#ele_button19 {
+    border-bottom-left-radius: 8px;
+}
+
+#ele_button82 {
+    border-top-right-radius: 8px;
+}
+
+#ele_button89 {
+    border-bottom-right-radius: 8px;
+}
+
+.ele_false {
+    background-color: #2d2d2d;
+    color: #2d2d2d;
+    border: solid 2px #2d2d2d;
+    cursor: default;
+    width: 60px;
+    height: 60px;
+}
+
+/* round pieces */
+.circle1 {
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: auto;
+    width: 35px;
+    height: 35px;
+}
+
+.circle2 {
+    background-color: #2d2d2d;
+    border-radius: 50%;
+    border: solid 3px #ffffff;
+    margin: auto;
+    width: 35px;
+    height: 35px;
+}
