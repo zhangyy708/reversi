@@ -1,2 +1,2 @@
-# mancala
+# reversi
  An online game.
