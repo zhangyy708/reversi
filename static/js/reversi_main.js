@@ -4,7 +4,7 @@ $(document).ready(function() {
     // adjustable
 
     
-    // system
+    // system --------------------------------------------------------------------------------------------------------------
     var player = 1; // initial player
     var direction = [-1, 1, -10, 10, -9, 9, -11, 11]; // directions
     var able_click = [0, 0]; // for calculating whether clickable button exists for both players
@@ -21,26 +21,21 @@ $(document).ready(function() {
         button_id_false[i] = Number(button_false[i].getAttribute('id').slice(10));
     };
 
-    // initial display
+    var language = 0; // which language (0 - English; 1 - 简体中文)
+    var language_temp = 0; // do not change until press button
+    var cpu = 0; // play local or cpu (0 - local; 1 - cpu)
+    var cpu_temp = 0; // do not change until press button
+
+    // initial display -----------------------------------------------------------------------------------------------------
     document.getElementById('welcome').style.display = 'block';
+    document.getElementById('options').style.display = 'none';
+    document.getElementById('rules').style.display = 'none';
     document.getElementById('game').style.display = 'none';
     document.getElementById('end').style.display = 'none';
 
-    // process control buttons
-    $('#to_game').click(function() {
-        document.getElementById('welcome').style.display = 'none';
-        document.getElementById('game').style.display = 'block';
-        document.getElementById('end').style.display = 'none';
-        
-        // start
-        control();
-    });
-
-    $('#end_to_welcome').click(function() {
-        document.getElementById('welcome').style.display = 'block';
-        document.getElementById('game').style.display = 'none';
-        document.getElementById('end').style.display = 'none';
-    })
+    // welcome page initial display
+    $('#title_welcome_cn').hide();
+    $('#welcome_buttons_cn').hide();    
 
     // disable all buttons
     $('.ele').attr('disabled', true);
@@ -57,7 +52,316 @@ $(document).ready(function() {
         };
     };
 
-    // control
+    // process control buttons ---------------------------------------------------------------------------------------------
+    // welcome to game
+    $('#to_game_en').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        
+        $('#title_game_en').show();
+        $('#title_game_cn').hide();
+        
+        // start
+        control();
+    });
+
+    $('#to_game_cn').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        
+        $('#title_game_en').hide();
+        $('#title_game_cn').show();
+        
+        // start
+        control();
+    });
+
+    // welcome to options
+    // default: local players
+    $('#ai_off_cn').hide();
+    $('#ai_off_en').show();
+    $('#ai_off_en').text('Local players \u2713');
+    $('#ai_off_en').css({
+        'background-color': 'white',
+        'color': '#2d2d2d'
+    });
+
+    $('#to_options_en').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('options').style.display = 'block';
+
+        $('#title_options_en').show();
+        $('#sub_options_en').show();
+        $('#des_options_en').show();
+        $('#options_to_welcome_en').show();
+        $('#title_options_cn').hide();
+        $('#sub_options_cn').hide();
+        $('#des_options_cn').hide();
+        $('#options_to_welcome_cn').hide();
+        
+        $('#ai_off_en').show();
+        $('#ai_off_cn').hide();
+        
+        if (cpu === 0) {
+            $('#ai_off_en').text('Local players \u2713');
+            $('#ai_off_en').css({
+                'background-color': 'white',
+                'color': '#2d2d2d'
+            });
+        } else if (cpu === 1) {
+            $('#ai_off_en').text('Local players');
+            $('#ai_off_en').css({
+                'background-color': '#2d2d2d',
+                'color': 'white'
+            });
+        };
+    });
+
+    $('#to_options_cn').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('options').style.display = 'block';
+
+        $('#title_options_cn').show();
+        $('#sub_options_cn').show();
+        $('#des_options_cn').show();
+        $('#options_to_welcome_cn').show();
+        $('#title_options_en').hide();
+        $('#sub_options_en').hide();
+        $('#des_options_en').hide();
+        $('#options_to_welcome_en').hide();
+        
+        $('#ai_off_cn').show();
+        $('#ai_off_en').hide();
+        
+        if (cpu === 0) {
+            $('#ai_off_cn').text('本地 \u2713');
+            $('#ai_off_cn').css({
+                'background-color': 'white',
+                'color': '#2d2d2d'
+            });
+        } else if (cpu === 1) {
+            $('#ai_off_cn').text('本地');
+            $('#ai_off_cn').css({
+                'background-color': '#2d2d2d',
+                'color': 'white'
+            });
+        };
+    });
+
+    // options to welcome
+    $('#options_to_welcome_en').click(function() {
+        cpu = cpu_temp;
+        language = language_temp;
+
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('options').style.display = 'none';
+        if (language === 0) {
+            $('#title_welcome_cn').hide();
+            $('#welcome_buttons_cn').hide();
+            $('#title_welcome_en').show();
+            $('#welcome_buttons_en').show();
+        } else if (language === 1) {            
+            $('#title_welcome_cn').show();
+            $('#welcome_buttons_cn').show();
+            $('#title_welcome_en').hide();
+            $('#welcome_buttons_en').hide();
+        };
+    });
+
+    $('#options_to_welcome_cn').click(function() {
+        cpu = cpu_temp;
+        language = language_temp;
+        
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('options').style.display = 'none';
+        if (language === 0) {            
+            $('#title_cn').hide();
+            $('#welcome_buttons_cn').hide();
+            $('#title_en').show();
+            $('#welcome_buttons_en').show();
+        } else if (language === 1) {            
+            $('#title_cn').show();
+            $('#welcome_buttons_cn').show();
+            $('#title_en').hide();
+            $('#welcome_buttons_en').hide();
+        };
+    });
+
+    // welcome to rules
+    $('#to_rules_en').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('rules').style.display = 'block';
+
+        $('#title_rules_en').show();
+        $('#sub_rules_en').show();
+        $('#ref_en').show();
+        $('#rules_en').show();
+        $('#rules_to_welcome_en').show();
+
+        $('#title_rules_cn').hide();
+        $('#sub_rules_cn').hide();
+        $('#ref_cn').hide();
+        $('#rules_cn').hide();
+        $('#rules_to_welcome_cn').hide();
+    });
+
+    $('#to_rules_cn').click(function() {
+        document.getElementById('welcome').style.display = 'none';
+        document.getElementById('rules').style.display = 'block';
+
+        $('#title_rules_cn').show();
+        $('#sub_rules_cn').show();
+        $('#ref_cn').show();
+        $('#rules_cn').show();
+        $('#rules_to_welcome_cn').show();
+
+        $('#title_rules_en').hide();
+        $('#sub_rules_en').hide();
+        $('#ref_en').hide();
+        $('#rules_en').hide();
+        $('#rules_to_welcome_en').hide();
+    });
+
+    // rules to welcome
+    $('#rules_to_welcome_en').click(function() {
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('rules').style.display = 'none';
+        
+        $('#title_welcome_cn').hide();
+        $('#welcome_buttons_cn').hide();
+        $('#title_welcome_en').show();
+        $('#welcome_buttons_en').show();
+    });
+
+    $('#rules_to_welcome_cn').click(function() {
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('rules').style.display = 'none';
+                  
+        $('#title_welcome_cn').show();
+        $('#welcome_buttons_cn').show();
+        $('#title_welcome_en').hide();
+        $('#welcome_buttons_en').hide();
+    });
+
+    // end to welcome
+    $('#end_to_welcome_en').click(function() {
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('end').style.display = 'none';
+        
+        $('#title_welcome_en').show();
+        $('#title_welcome_cn').hide();
+    });
+
+    $('#end_to_welcome_cn').click(function() {
+        document.getElementById('welcome').style.display = 'block';
+        document.getElementById('end').style.display = 'none';
+        
+        $('#title_welcome_en').hide();
+        $('#title_welcome_cn').show();
+    });
+
+    // options --------------------------------------------------------------------------------------------------
+    // if click on "vs CPU"
+    $('#ai_on').click(function() {
+        cpu_temp = 1;
+
+        $('#ai_on').text('vs CPU \u2713');
+        $('#ai_on').css({
+            'background-color': 'white',
+            'color': '#2d2d2d'
+        });
+
+        if (language === 0) {
+            $('#ai_off_en').text('Local players');
+            $('#ai_off_en').css({
+                'background-color': '#2d2d2d',
+                'color': 'white'
+            });
+        } else if (language === 1) {
+            $('#ai_off_cn').text('本地');
+            $('#ai_off_cn').css({
+                'background-color': '#2d2d2d',
+                'color': 'white'
+            });
+        };
+    });
+
+    // if click on "Local players"
+    $('#ai_off_en').click(function() {
+        cpu_temp = 0;
+
+        $('#ai_on').text('vs CPU');
+        $('#ai_on').css({
+            'background-color': '#2d2d2d',
+            'color': 'white'
+        });
+
+        $('#ai_off_en').text('Local players \u2713');
+        $('#ai_off_en').css({
+            'background-color': 'white',
+            'color': '#2d2d2d'
+        });
+    });
+
+    $('#ai_off_cn').click(function() {
+        cpu_temp = 0;
+
+        $('#ai_on').text('vs CPU');
+        $('#ai_on').css({
+            'background-color': '#2d2d2d',
+            'color': 'white'
+        });
+
+        $('#ai_off_cn').text('本地 \u2713');
+        $('#ai_off_cn').css({
+            'background-color': 'white',
+            'color': '#2d2d2d'
+        });
+    });
+
+    // default: English
+    $('#en').text('English \u2713');
+    $('#en').css({
+        'background-color': 'white',
+        'color': '#2d2d2d'
+    });
+
+    // if click on "简体中文"
+    $('#cn').click(function() {
+        language_temp = 1;
+
+        $('#cn').text('简体中文 \u2713');
+        $('#cn').css({
+            'background-color': 'white',
+            'color': '#2d2d2d'
+        });
+
+        $('#en').text('English');
+        $('#en').css({
+            'background-color': '#2d2d2d',
+            'color': 'white'
+        });
+    });
+
+    // if click on "English"
+    $('#en').click(function() {
+        language_temp = 0;
+
+        $('#cn').text('简体中文');
+        $('#cn').css({
+            'background-color': '#2d2d2d',
+            'color': 'white'
+        });
+
+        $('#en').text('English \u2713');
+        $('#en').css({
+            'background-color': 'white',
+            'color': '#2d2d2d'
+        });
+    });
+
+
+    // control -----------------------------------------------------------------------------------------------------------
     var control = function() {
         able_click[player - 1] = 0; // reset the current player clickable condition
 
@@ -75,12 +379,30 @@ $(document).ready(function() {
         if (able_click[player - 1] == 0) { // current player cannot click
 
             if (able_click[2 - player] == 0) { // the other player cannot click
-                $('#player').html('No place can be selected. Game set.');
+                if (language == 0) {
+                    $('#player').html('No place can be selected. Game set.');
+                    $('#title_end_en').show();
+                    $('#end_to_welcome_en').show();
+                    $('#title_end_cn').hide();
+                    $('#end_to_welcome_cn').hide();
+                } else if (language == 1) {
+                    $('#player').html('没有可以选择的格子。游戏结束。');
+                    $('#title_end_cn').show();
+                    $('#end_to_welcome_cn').show();
+                    $('#title_end_en').hide();
+                    $('#end_to_welcome_en').hide();
+                };
+                
                 setTimeout(function() {
                     end();
                 }, 1000);
             } else { // the other player can click
-                $('#player').html('No place can be selected. Change to player ' + (3 - player) + '.');
+                if (language == 0) {
+                    $('#player').html('No place can be selected. Change to player ' + (3 - player) + '.');
+                } else if (language == 1) {
+                    $('#player').html('没有可以选择的格子。变为玩家' + (3 - player) + '。');
+                };
+
                 player = 3 - player; // change player
                 setTimeout(function() {
                     control();
@@ -89,13 +411,16 @@ $(document).ready(function() {
 
         } else { // current player can click
 
-            $('#player').html('Player ' + player + ' playing ... ');
-
+            if (language == 0) {
+                $('#player').html('Player ' + player + ' playing ... ');
+            } else if (language == 1) {
+                $('#player').html('玩家' + player + '选择中…');
+            };
         };
         
     };
 
-    // check if able to click
+    // check if able to click --------------------------------------------------------------------------------------------
     var direction_index = function(button_id) {
         var direction_index = new Array();
 
@@ -142,7 +467,7 @@ $(document).ready(function() {
         return direction_index;
     };
 
-    // click an enabled button
+    // click an enabled button -------------------------------------------------------------------------------------------
     var click_results = function(click_id) {
         click_directions = direction_index(click_id); // store clickable directions
 
@@ -174,7 +499,7 @@ $(document).ready(function() {
 
     };
 
-    // end the game
+    // end the game ------------------------------------------------------------------------------------------------------
     var end = function() {
         document.getElementById('welcome').style.display = 'none';
         document.getElementById('game').style.display = 'none';
@@ -203,21 +528,42 @@ $(document).ready(function() {
             };
         };
 
-        $('#p1').html(p1);
-        $('#p2').html(p2);
+        if (language == 0) {
+            $('#p1').html('<p>player 1</p><p>' + p1 + '</p>');
+            $('#p2').html('<p>player 2</p><p>' + p2+ '</p>');
+        } else if (language == 1) {
+            $('#p1').html('<p>玩家1</p><p>' + p1 + '</p>');
+            $('#p2').html('<p>玩家2</p><p>' + p2+ '</p>');
+        };        
 
         if (p1 > p2) {
-            $('#who_wins').html('Player 1 wins!');
+            if (language == 0) {                
+                $('#who_wins').html('Player 1 wins!');
+            } else if (language == 1) {
+                $('#who_wins').html('玩家1胜利！');
+            };
         } else if (p1 < p2) {
-            $('#who_wins').html('Player 2 wins!');
+            if (language == 0) {
+                $('#who_wins').html('Player 2 wins!');
+            } else if (language == 1) {
+                $('#who_wins').html('玩家2胜利！');
+            };
         } else {
-            $('#who_wins').html('Strike');
+            if (language == 0) {
+                $('#who_wins').html('Strike');
+            } else if (language == 1) {
+                $('#who_wins').html('平局');
+            };
         };
         
         // initialise
         $('.ele').attr('disabled', true);
         $('.ele_false').attr('disabled', true);
-        $('#player').html('Player 1 playing ...');
+        if (language == 0) {
+            $('#player').html('Player 1 playing ...');
+        } else if (language == 1) {
+            $('#player').html('玩家1选择中…');
+        };
         player = 1; // initial player
         able_click = [0, 0]; // for calculating whether clickable button exists for both players
         click_directions = new Array(); // store clickable direction index

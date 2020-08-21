@@ -17,26 +17,133 @@
     <!-- welcome page -->
     <div id="welcome" class="ui center aligned container">
         <div id="top">
-            <h1 class="title" id="title_welcome">Reversi</h1>
+            <h1 class="title" id="title_welcome_en">Reversi</h1>
+            <h1 class="title" id="title_welcome_cn">黑白棋</h1>
         </div>
         <div id="stage">
-            <div class="ui huge vertical buttons" id="welcome_buttons">                
-                <button class="ui inverted button" id="to_game">Start the game!</button>
-                <!-- <p></p> -->
-                <button class="ui inverted button" id="to_options">Options</button>
-                <!-- <p></p> -->
-                <button class="ui inverted button" id="to_rules">How to play</button>
+            <div class="ui huge vertical buttons" id="welcome_buttons_en">                
+                <button class="ui inverted button" id="to_game_en">Start the game!</button>
+                <button class="ui inverted button" id="to_options_en">Options</button>
+                <button class="ui inverted button" id="to_rules_en">How to play</button>
+            </div>
+            <div class="ui huge vertical buttons" id="welcome_buttons_cn">                
+                <button class="ui inverted button" id="to_game_cn">开始游戏！</button>
+                <button class="ui inverted button" id="to_options_cn">选项</button>
+                <button class="ui inverted button" id="to_rules_cn">游戏规则</button>
             </div>
         </div>
         <div id="bottom">
             <!-- null -->
         </div>
     </div>
+    
+    <!-- options page -->
+    <div id="options" class="ui center aligned container">
+        <div id="top">
+            <h1 class="title" id="title_options_en">Reversi</h1>
+            <h1 class="title" id="title_options_cn">黑白棋</h1>
+            <h2 class="sub" id="sub_options_en">Options</h2>
+            <h2 class="sub" id="sub_options_cn">选项</h2>
+            <p class="des" id="des_options_en"><i>**Currently only local players mode is available.**</i></p>
+            <p class="des" id="des_options_cn"><i>**目前仅有本地模式**</i></p>
+        </div>
+        <div id="stage">
+            <div class="ui two large buttons" id="options_ai">
+                <button class="ui inverted button" id="ai_off_en">Local players</button>
+                <button class="ui inverted button" id="ai_off_cn">本地</button>
+                <div class="or"></div>
+                <button class="ui inverted button" id="ai_on">vs CPU</button>
+            </div>
+            
+            <div class="ui two large buttons" id="options_lan">
+                <button class="ui inverted button" id="en">English</button>
+                <div class="or"></div>
+                <button class="ui inverted button" id="cn">简体中文</button>
+            </div>
+        </div>
+        <div id="bottom">          
+            <button class="ui huge inverted button" id="options_to_welcome_en">OK</button>
+            <button class="ui huge inverted button" id="options_to_welcome_cn">确定</button>
+        </div>
+    </div>   
+    
+    <!-- rules page -->
+    <div id="rules" class="ui center aligned container">
+        <div id="top">
+            <h1 class="title" id="title_rules_en">Reversi</h1>
+            <h1 class="title" id="title_rules_cn">黑白棋</h1>
+            <h2 class="sub" id="sub_rules_en">Rules</h2>
+            <h2 class="sub" id="sub_rules_cn">游戏规则</h2>
+        </div>
+        <div id="stage">
+            <div id="ref_en">
+                <p><br>
+                    <i>see <a href=
+                    "https://www.mastersofgames.com/rules/reversi-othello-rules.htm">
+                    this page</a> for details
+                    </i>
+                </p>
+            </div>
+            <div id="ref_cn">
+                <p><br>
+                    <i>参考<a href=
+                    "https://www.mastersofgames.com/rules/reversi-othello-rules.htm">
+                    此页面</a>
+                    </i>
+                </p>
+            </div>
+
+            <div id="rules_en">
+                <ul>
+                    <li>Each piece played must be laid adjacent to an opponent's piece so that the opponent's piece or 
+                        a row of opponent's pieces is flanked by the new piece and another piece of the player's colour. 
+                        All of the opponent's pieces between these two pieces are 'captured' and turned over to match 
+                        the player's colour.                    
+                    </li>
+                    <li>It can happen that a piece is played so that pieces or rows of pieces in more than one direction 
+                        are trapped between the new piece played and other pieces of the same colour. 
+                        In this case, all the pieces in all viable directions are turned over.
+                    </li>
+                    <li>A player without a move simply passes, and the other player keeps playing pieces 
+                        until the first player can make a move again.
+                    </li>                      
+                    <li>
+                        The game is over when neither player has a legal move 
+                        (i.e. a move that captures at least one opposing piece) or when the board is full. 
+                        The player who has more pieces wins.                   
+                    </li>
+                </ul>
+            </div>
+
+            <div id="rules_cn">
+                <ul>
+                    <li>每枚棋子必须放在与对手棋子相邻的位置，使得一枚或一行对手棋子被夹在该棋子与另一枚相同颜色棋子中间。
+                        这两枚棋子中间的所有对手棋子都会被“翻转”（变为自己棋子的颜色）。
+                    </li>
+                    <li>有时，一枚棋子可以有多个方向存在可以“翻转”的对手棋子。
+                        此时，所有可行方向的所有棋子都会被“翻转”。
+                    </li>
+                    <li>当一名玩家没有可选择的格子放置棋子时，跳过，由另一名玩家放置棋子，
+                        直至之前的玩家有可选择的格子放置棋子。
+                    </li>                      
+                    <li>当双方玩家均没有可选择的格子放置棋子、或棋盘被放满棋子时，游戏结束。
+                        自己颜色的棋子数多的一方获胜。                  
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="bottom">          
+            <button class="ui huge inverted button" id="rules_to_welcome_en">Menu</button>
+            <button class="ui huge inverted button" id="rules_to_welcome_cn">回到菜单</button>
+        </div>
+    </div>
 
     <!-- game start -->
     <div id="game" class="ui container">
         <div id="top">
-            <h1 class="title" id="title_game">Reversi</h1>
+            <h1 class="title" id="title_game_en">Reversi</h1>
+            <h1 class="title" id="title_game_cn">黑白棋</h1>
         </div>
         <div id="stage">
             
@@ -193,23 +300,23 @@
     <!-- end page -->
     <div id="end" class="ui center aligned container">
         <div id="top">
-            <h1 class="title" id="end_welcome">Reversi</h1>
+            <h1 class="title" id="title_end_en">Reversi</h1>
+            <h1 class="title" id="title_end_cn">黑白棋</h1>
         </div>
         <div id="stage">
             <h2 id="who_wins">Player 1 wins!</h2>
             <div class="ui middle aligned four column centered grid" id="results">
                 <div class="column">
-                    <p>Player 1</p>
-                    <p id="p1"></p>
+                    <div id="p1"></div>
                 </div>
                 <div class="column">
-                    <p>Player 2</p>
-                    <p id="p2"></p>
+                    <div id="p2"></div>
                 </div>
             </div>
         </div>
         <div id="bottom">
-            <button class="ui inverted button" id="end_to_welcome">Menu</button>
+            <button class="ui inverted button" id="end_to_welcome_en">Menu</button>
+            <button class="ui inverted button" id="end_to_welcome_cn">回到菜单</button>
         </div>
     </div>
 
